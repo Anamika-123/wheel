@@ -8,6 +8,7 @@ import { CARD_DATA } from "./constants";
 import EditNotePane from "./Pane/EditNote";
 
 export default function NotesList({ setIsDeleteModalOpen }) {
+
   const [showEditNote, setShowEditNote] = useState(false);
   return (
     <>
