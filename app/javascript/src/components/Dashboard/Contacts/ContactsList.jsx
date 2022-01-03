@@ -5,7 +5,7 @@ import { Typography, Table, Avatar, Dropdown } from "@bigbinary/neetoui/v2";
 
 import { CONTACTS_DATA } from "./constants";
 
-const ContactsList = () => {
+const ContactsList = ({ setIsDeleteAlertOpen }) => {
   return (
     <Table
       columnData={[
@@ -39,7 +39,7 @@ const ContactsList = () => {
           render: () => (
             <Dropdown buttonStyle="text" icon={MenuHorizontal}>
               <li>Edit</li>
-              <li>Delete</li>
+              <li onClick={() => setIsDeleteAlertOpen(true)}> Delete</li>
             </Dropdown>
           ),
         },
@@ -47,7 +47,7 @@ const ContactsList = () => {
       currentPageNumber={1}
       defaultPageSize={10}
       fixedHeight
-      handlePageChange={function noRefCheck() { }}
+      handlePageChange={function noRefCheck() {}}
       rowData={CONTACTS_DATA}
     />
   );

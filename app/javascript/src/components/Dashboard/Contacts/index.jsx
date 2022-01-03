@@ -6,12 +6,14 @@ import { Container, Header } from "neetoui/v2/layouts";
 
 import ContactsList from "./ContactsList";
 import NewContact from "./Create/Contact";
+import DeleteContact from "./DeleteContact";
 import Filter from "./Filter";
 
 const Contacts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [isNewContactOpen, setIsNewContactOpen] = useState(false);
+  const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
 
   return (
     <>
@@ -33,11 +35,19 @@ const Contacts = () => {
           }
           menuBarToggle={() => setIsMenuOpen(!isMenuOpen)}
         />
-        <ContactsList />
+        <ContactsList setIsDeleteAlertOpen={setIsDeleteAlertOpen} />
         <NewContact
           isNewContactOpen={isNewContactOpen}
           setIsNewContactOpen={setIsNewContactOpen}
         />
+        {isDeleteAlertOpen && (
+          <DeleteContact
+            onClose={setIsDeleteAlertOpen}
+            isOpen={isDeleteAlertOpen}
+            title="Delete Contact"
+            setIsOpen={setIsDeleteAlertOpen}
+          />
+        )}
       </Container>
     </>
   );
