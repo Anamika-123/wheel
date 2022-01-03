@@ -58,7 +58,7 @@ export default function NotesList({ setIsDeleteModalOpen }) {
                 <Avatar
                   size="small"
                   user={{
-                    imageUrl: "https://i.pravatar.cc/150",
+                    imageUrl: "https://i.pravatar.cc/150?img=4",
                   }}
                 />
               </div>

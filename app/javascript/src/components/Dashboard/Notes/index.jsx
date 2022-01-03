@@ -20,7 +20,7 @@ const Notes = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [notes, setNotes] = useState([]);
-  const [showMenu, setShowMenu] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   useEffect(() => {
     fetchNotes();
@@ -44,8 +44,8 @@ const Notes = () => {
 
   return (
     <>
-      <Filter showMenu={showMenu} />
-      <div className="w-full">
+      <Filter isMenuOpen={isMenuOpen} />
+      <Container>
         <Header
           title="All Notes"
           searchProps={{
@@ -60,7 +60,7 @@ const Notes = () => {
               icon={Plus}
             />
           }
-          menuBarToggle={() => setShowMenu(!showMenu)}
+          menuBarToggle={() => setIsMenuOpen(!isMenuOpen)}
         />
         {notes.length ? (
           <NotesList setIsDeleteModalOpen={setIsDeleteModalOpen} />
@@ -86,7 +86,7 @@ const Notes = () => {
             setIsOpen={setIsDeleteModalOpen}
           />
         )}
-      </div>
+      </Container>
     </>
   );
 };
