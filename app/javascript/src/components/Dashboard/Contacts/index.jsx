@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Plus } from "@bigbinary/neeto-icons";
-
 import { Button } from "neetoui/v2";
 import { Container, Header } from "neetoui/v2/layouts";
-import constants from "./constants"
 
 import ContactsList from "./ContactsList";
+import NewContact from "./Create/Contact";
 import Filter from "./Filter";
 
 const Contacts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(true);
-  const contacts = constants.CONTACTS_DATA;
+  const [isNewContactOpen, setIsNewContactOpen] = useState(false);
 
   return (
     <>
@@ -29,11 +28,16 @@ const Contacts = () => {
             <Button
               label="Add Contact"
               icon={Plus}
+              onClick={() => setIsNewContactOpen(true)}
             />
           }
           menuBarToggle={() => setIsMenuOpen(!isMenuOpen)}
         />
-        <ContactsList contacts={contacts} />
+        <ContactsList />
+        <NewContact
+          isNewContactOpen={isNewContactOpen}
+          setIsNewContactOpen={setIsNewContactOpen}
+        />
       </Container>
     </>
   );
