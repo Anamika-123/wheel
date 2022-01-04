@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 
+import { Plus } from "@bigbinary/neeto-icons"
+
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui/v2";
-import { Container, Header, SubHeader } from "neetoui/v2/layouts";
+import { Container, Header } from "neetoui/v2/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
 import DeleteAlert from "./DeleteAlert";
-import NoteTable from "./NoteTable";
+import NotesList from "./NotesList";
 import NewNotePane from "./Pane/CreateNote";
+import Filter from "./Filter";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +21,7 @@ const Notes = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
+  const [showMenu, setShowMenu] = useState(true);
 
   useEffect(() => {
     fetchNotes();
@@ -40,59 +44,51 @@ const Notes = () => {
   }
 
   return (
-    <Container>
-      <Header
-        title="Notes"
-        actionBlock={
-          <Button
-            onClick={() => setShowNewNotePane(true)}
-            label="Add New Note"
-            icon="ri-add-line"
+    <>
+      <Filter showMenu={showMenu} />
+      <div className="w-full">
+        <Header
+          title="All Notes"
+          searchProps={{
+            onChange: e => setSearchTerm(e.target.value),
+            value: searchTerm,
+            placeholder: "Search Name, Email, Phone Number, Ect.",
+          }}
+          actionBlock={
+            <Button
+              onClick={() => setShowNewNotePane(true)}
+              label="Add New Note"
+              icon={Plus}
+            />
+          }
+          menuBarToggle={() => setShowMenu(!showMenu)}
+        />
+        {notes.length ? (
+          <NotesList setShowDeleteAlert={setShowDeleteAlert} />
+        ) : (
+          <EmptyState
+            image={EmptyNotesListImage}
+            title="Looks like you don't have any notes!"
+            subtitle="Add your notes to send customized emails to them."
+            primaryAction={() => setShowNewNotePane(true)}
+            primaryActionLabel="Add New Note"
           />
-        }
-      />
-      {notes.length ? (
-        <>
-          <SubHeader
-            searchProps={{
-              value: searchTerm,
-              onChange: e => setSearchTerm(e.target.value),
-              clear: () => setSearchTerm(""),
-            }}
-            deleteButtonProps={{
-              onClick: () => setShowDeleteAlert(true),
-              disabled: !selectedNoteIds.length,
-            }}
-          />
-          <NoteTable
+        )}
+        <NewNotePane
+          showPane={showNewNotePane}
+          setShowPane={setShowNewNotePane}
+          fetchNotes={fetchNotes}
+        />
+        {showDeleteAlert && (
+          <DeleteAlert
+            selectedNoteIds={selectedNoteIds}
+            onClose={() => setShowDeleteAlert(false)}
+            refetch={fetchNotes}
             setSelectedNoteIds={setSelectedNoteIds}
-            notes={notes}
-            fetchNotes={fetchNotes}
           />
-        </>
-      ) : (
-        <EmptyState
-          image={EmptyNotesListImage}
-          title="Looks like you don't have any notes!"
-          subtitle="Add your notes to send customized emails to them."
-          primaryAction={() => setShowNewNotePane(true)}
-          primaryActionLabel="Add New Note"
-        />
-      )}
-      <NewNotePane
-        showPane={showNewNotePane}
-        setShowPane={setShowNewNotePane}
-        fetchNotes={fetchNotes}
-      />
-      {showDeleteAlert && (
-        <DeleteAlert
-          selectedNoteIds={selectedNoteIds}
-          onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchNotes}
-          setSelectedNoteIds={setSelectedNoteIds}
-        />
-      )}
-    </Container>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import { resetAuthTokens } from "apis/axios";
 import { useAuthDispatch } from "contexts/auth";
 import { useUserState } from "contexts/user";
 
-import { APP_NAME, SIDENAV_LINKS } from "./constants";
+import { SIDENAV_LINKS } from "./constants";
 
 const Sidenav = () => {
   const history = useHistory();
@@ -49,7 +49,6 @@ const Sidenav = () => {
     <Sidebar
       isCollapsed={isSidebarCollapsed}
       navLinks={SIDENAV_LINKS}
-      appName={APP_NAME}
       organizationInfo={{
         name: "Wheel",
         subdomain: "bigbinary.com",
