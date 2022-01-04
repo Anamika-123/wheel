@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { MenuVertical, Clock } from "@bigbinary/neeto-icons";
 import { Container, SubHeader, Footer } from "neetoui/v2/layouts";
 import { Avatar, Dropdown, Typography, Tag, Tooltip } from "@bigbinary/neetoui/v2";
-import { CARD_DATA } from "./constants";
+import constants from "./constants";
 
 import EditNotePane from "./Pane/EditNote";
 
@@ -13,7 +13,7 @@ export default function NotesList({ setIsDeleteModalOpen }) {
   return (
     <>
       <div className="m-5 w-full notes-table-height">
-        {CARD_DATA.map((item) => (
+        {constants.CARD_DATA.map((item) => (
           <div className="m-5 p-5 rounded-md neeto-ui-shadow-s" key={item.id}>
             <SubHeader
               className="mb-0"
