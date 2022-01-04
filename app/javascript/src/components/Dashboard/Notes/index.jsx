@@ -9,7 +9,7 @@ import { Container, Header } from "neetoui/v2/layouts";
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
-import DeleteAlert from "./DeleteAlert";
+import DeleteNote from "./DeleteNote";
 import NotesList from "./NotesList";
 import NewNotePane from "./Pane/CreateNote";
 import Filter from "./Filter";
@@ -17,9 +17,8 @@ import Filter from "./Filter";
 const Notes = () => {
   const [loading, setLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
-  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
   const [showMenu, setShowMenu] = useState(true);
 
@@ -64,7 +63,7 @@ const Notes = () => {
           menuBarToggle={() => setShowMenu(!showMenu)}
         />
         {notes.length ? (
-          <NotesList setShowDeleteAlert={setShowDeleteAlert} />
+          <NotesList setIsDeleteModalOpen={setIsDeleteModalOpen} />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -79,12 +78,12 @@ const Notes = () => {
           setShowPane={setShowNewNotePane}
           fetchNotes={fetchNotes}
         />
-        {showDeleteAlert && (
-          <DeleteAlert
-            selectedNoteIds={selectedNoteIds}
-            onClose={() => setShowDeleteAlert(false)}
-            refetch={fetchNotes}
-            setSelectedNoteIds={setSelectedNoteIds}
+        {isDeleteModalOpen && (
+          <DeleteNote
+            onClose={setIsDeleteModalOpen}
+            isOpen={isDeleteModalOpen}
+            title="Delete Note"
+            setIsOpen={setIsDeleteModalOpen}
           />
         )}
       </div>

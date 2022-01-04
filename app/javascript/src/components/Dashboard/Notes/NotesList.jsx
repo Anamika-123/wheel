@@ -7,12 +7,9 @@ import { CARD_DATA } from "./constants";
 
 import EditNotePane from "./Pane/EditNote";
 
-export default function NotesList({
-  notes = [],
-  fetchNotes,
-}) {
+export default function NotesList({ setIsDeleteModalOpen }) {
+
   const [showEditNote, setShowEditNote] = useState(false);
-  const [selectedNote, setSelectedNote] = useState({});
   return (
     <>
       <div className="m-5 w-full notes-table-height">
@@ -29,7 +26,8 @@ export default function NotesList({
                 <>
                   <Dropdown buttonStyle="text" icon={MenuVertical}>
                     <li>Edit</li>
-                    <li>Delete</li>
+                    <li onClick={() => setIsDeleteModalOpen(true)}
+                    >Delete</li>
                   </Dropdown>
                 </>
               }
@@ -72,8 +70,6 @@ export default function NotesList({
       <EditNotePane
         showPane={showEditNote}
         setShowPane={setShowEditNote}
-        fetchNotes={fetchNotes}
-        note={selectedNote}
       />
     </>
   );
