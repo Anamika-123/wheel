@@ -4,16 +4,16 @@ import { Pane, Typography } from "neetoui/v2";
 
 import Form from "./Form";
 
-export default function EditNotePane({
+export default function EditNote({
   fetchNotes,
-  showPane,
-  setShowPane,
+  isEditNotePaneOpen,
+  setIsEditNotePaneOpen,
   note,
 }) {
-  const onClose = () => setShowPane(false);
+  const onClose = () => setIsEditNotePaneOpen(false);
 
   return (
-    <Pane isOpen={showPane} onClose={onClose}>
+    <Pane isOpen={isEditNotePaneOpen} onClose={onClose}>
       <Pane.Header>
         <Typography style="h2" weight="semibold">
           Edit Note

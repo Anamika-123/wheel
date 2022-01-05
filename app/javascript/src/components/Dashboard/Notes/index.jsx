@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Plus } from "@bigbinary/neeto-icons"
+import { Plus } from "neetoIcons";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui/v2";
@@ -11,12 +11,12 @@ import EmptyState from "components/Common/EmptyState";
 
 import DeleteNote from "./DeleteNote";
 import NotesList from "./NotesList";
-import NewNotePane from "./Pane/CreateNote";
+import NewNote from "./Pane/CreateNote";
 import Filter from "./Filter";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
-  const [showNewNotePane, setShowNewNotePane] = useState(false);
+  const [isNewNotePaneOpen, setIsNewNotePaneOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [notes, setNotes] = useState([]);
@@ -55,7 +55,7 @@ const Notes = () => {
           }}
           actionBlock={
             <Button
-              onClick={() => setShowNewNotePane(true)}
+              onClick={() => setIsNewNotePaneOpen(true)}
               label="Add New Note"
               icon={Plus}
             />
@@ -69,13 +69,13 @@ const Notes = () => {
             image={EmptyNotesListImage}
             title="Looks like you don't have any notes!"
             subtitle="Add your notes to send customized emails to them."
-            primaryAction={() => setShowNewNotePane(true)}
+            primaryAction={() => setIsNewNotePaneOpen(true)}
             primaryActionLabel="Add New Note"
           />
         )}
-        <NewNotePane
-          showPane={showNewNotePane}
-          setShowPane={setShowNewNotePane}
+        <NewNote
+          isNewNotePaneOpen={isNewNotePaneOpen}
+          setIsNewNotePaneOpen={setIsNewNotePaneOpen}
           fetchNotes={fetchNotes}
         />
         {isDeleteModalOpen && (

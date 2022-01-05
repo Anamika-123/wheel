@@ -6,6 +6,7 @@ export default {
       description:
         "My laptop got shut down suddently. How can I claim the warranty online?",
       tags: ["laptop"],
+      imageUrl: "https://i.pravatar.cc/150?img=4",
       createdAt: { date: "Wednesday 10.30 am", timeAgo: "2 hours ago" },
     },
     {
@@ -14,6 +15,7 @@ export default {
       description:
         "My laptop got shut down suddently. How can I claim the warranty online?",
       tags: ["laptop"],
+      imageUrl: "https://i.pravatar.cc/150?img=4",
       createdAt: { date: "Thursday 12.30 am", timeAgo: "3 hours ago" },
     },
     {
@@ -22,6 +24,7 @@ export default {
       description:
         "My laptop got shut down suddently. How can I claim the warranty online?",
       tags: ["laptop"],
+      imageUrl: "https://i.pravatar.cc/150?img=4",
       createdAt: { date: "Monday 10.30 am", timeAgo: "4 days ago" },
     },
     {
@@ -30,6 +33,7 @@ export default {
       description:
         "My laptop got shut down suddently. How can I claim the warranty online?",
       tags: ["laptop"],
+      imageUrl: "https://i.pravatar.cc/150?img=4",
       createdAt: { date: "Friday 12.30 pm", timeAgo: "4 days ago" },
     },
   ],

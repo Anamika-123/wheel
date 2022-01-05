@@ -1,75 +1,26 @@
 import React, { useState } from "react";
 
-import { MenuVertical, Clock } from "@bigbinary/neeto-icons";
+import { MenuVertical, Clock } from "neetoIcons";
 import { Container, SubHeader, Footer } from "neetoui/v2/layouts";
-import { Avatar, Dropdown, Typography, Tag, Tooltip } from "@bigbinary/neetoui/v2";
+import { Avatar, Dropdown, Typography, Tag, Tooltip } from "neetoui/v2";
 import constants from "./constants";
 
-import EditNotePane from "./Pane/EditNote";
+import EditNote from "./Pane/EditNote";
+import Card from "./Card";
 
 export default function NotesList({ setIsDeleteModalOpen }) {
 
-  const [showEditNote, setShowEditNote] = useState(false);
+  const [isEditNotePaneOpen, setIsEditNotePaneOpen] = useState(false);
   return (
     <>
       <div className="m-5 w-full notes-table-height">
-        {constants.CARD_DATA.map((item) => (
-          <div className="m-5 p-5 rounded-md neeto-ui-shadow-s" key={item.id}>
-            <SubHeader
-              className="mb-0"
-              leftActionBlock={
-                <Typography style="h4">
-                  {item.title}
-                </Typography>
-              }
-              rightActionBlock={
-                <>
-                  <Dropdown buttonStyle="text" icon={MenuVertical}>
-                    <li>Edit</li>
-                    <li onClick={() => setIsDeleteModalOpen(true)}
-                    >Delete</li>
-                  </Dropdown>
-                </>
-              }
-            />
-            <Typography
-              style="body2"
-            >
-              {item.description}
-            </Typography>
-            <hr className="my-2" color="text-gray-500" />
-            <div className="flex justify-between">
-              {item.tags.map((tag) => (
-                <Tag
-                  label={tag}
-                  size="small"
-                  color="gray"
-                />
-              ))}
-              <div className="flex items-center">
-                <Clock color="#1e1e20" size={24} />
-                <Tooltip position="bottom-start" content={item.createdAt.date}>
-                  <Typography
-                    style="body3"
-                    className="text-gray-600 px-2"
-                  >
-                    {item.createdAt.timeAgo}
-                  </Typography>
-                </Tooltip>
-                <Avatar
-                  size="small"
-                  user={{
-                    imageUrl: "https://i.pravatar.cc/150?img=4",
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+        {constants.CARD_DATA.map((note) => (
+          <Card note={note} key={note.id} />
         ))}
       </div>
-      <EditNotePane
-        showPane={showEditNote}
-        setShowPane={setShowEditNote}
+      <EditNote
+        isEditNotePaneOpen={isEditNotePaneOpen}
+        setIsEditNotePaneOpen={setIsEditNotePaneOpen}
       />
     </>
   );

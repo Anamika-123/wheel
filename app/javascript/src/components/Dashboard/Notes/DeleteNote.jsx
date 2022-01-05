@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-import { Check } from "@bigbinary/neeto-icons"
+import { Check } from "neetoIcons"
 
 import { Alert, Toastr, Typography, Button } from "neetoui/v2";
 
