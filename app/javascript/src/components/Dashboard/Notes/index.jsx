@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Plus } from "neetoIcons";
-
 import EmptyNotesListImage from "images/EmptyNotesList";
+import { Plus } from "neetoIcons";
 import { Button, PageLoader } from "neetoui/v2";
 import { Container, Header } from "neetoui/v2/layouts";
 
@@ -10,9 +9,9 @@ import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
 import DeleteNote from "./DeleteNote";
+import Filter from "./Filter";
 import NotesList from "./NotesList";
 import NewNote from "./Pane/CreateNote";
-import Filter from "./Filter";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -80,7 +79,7 @@ const Notes = () => {
         />
         {isDeleteModalOpen && (
           <DeleteNote
-            onClose={setIsDeleteModalOpen}
+            onClose={() => setIsDeleteModalOpen(!isDeleteModalOpen)}
             isOpen={isDeleteModalOpen}
             title="Delete Note"
             setIsOpen={setIsDeleteModalOpen}
