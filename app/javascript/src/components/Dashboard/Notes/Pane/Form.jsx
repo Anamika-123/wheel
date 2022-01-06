@@ -5,12 +5,13 @@ import { Button, Pane } from "neetoui/v2";
 import { Input, Select } from "neetoui/v2/formik";
 
 import notesApi from "apis/notes";
-import formValidationSchemas from "constants/formValidationSchemas";
+import { FORM_INITIAL_VALUES, FORM_VALIDATION_SCHEMA } from "../constants";
 
-import constants from "../constants";
+import { CONTACTS_DATA, TAGS_DATA } from "../constants";
 
 export default function NoteForm({ onClose, refetch, note, isEdit }) {
   const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = async values => {
     try {
       setSubmitted(true);
@@ -28,11 +29,11 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
 
   return (
     <Formik
-      initialValues={note}
+      initialValues={FORM_INITIAL_VALUES}
       onSubmit={handleSubmit}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={formValidationSchemas.notesForm}
+      validationSchema={FORM_VALIDATION_SCHEMA}
     >
       {({ isSubmitting, handleSubmit }) => (
         <Form className="w-full">
@@ -56,7 +57,7 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               name="contact"
               className="flex-grow-0 w-full"
               placeholder="Select Role"
-              options={constants.CONTACTS_DATA}
+              options={CONTACTS_DATA}
               required
             />
             <Select
@@ -64,7 +65,7 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               name="tags"
               className="flex-grow-0 w-full"
               placeholder="Select Tag"
-              options={constants.TAGS_DATA}
+              options={TAGS_DATA}
               isMulti
               required
             />
