@@ -5,7 +5,7 @@ import { Button } from "neetoui/v2";
 import { Container, Header } from "neetoui/v2/layouts";
 
 import ContactsList from "./ContactsList";
-import NewContact from "./Create/Contact";
+import NewContact from "./Create";
 import DeleteContact from "./DeleteContact";
 import Filter from "./Filter";
 

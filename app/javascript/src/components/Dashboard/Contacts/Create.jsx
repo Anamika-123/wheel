@@ -2,9 +2,8 @@ import React from "react";
 
 import { Pane, Typography } from "neetoui/v2";
 
+import { FORM_INITIAL_VALUES } from "./constants";
 import Form from "./Form";
-
-import { FORM_INITIAL_VALUES } from "../constants";
 
 export default function NewContact({ isNewContactOpen, setIsNewContactOpen }) {
   const onClose = () => setIsNewContactOpen(false);
