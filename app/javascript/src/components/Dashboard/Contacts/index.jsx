@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Plus } from "@bigbinary/neeto-icons";
+import { Plus } from "neetoIcons";
 import { Button } from "neetoui/v2";
 import { Container, Header } from "neetoui/v2/layouts";
 
@@ -13,7 +13,7 @@ const Contacts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [isNewContactOpen, setIsNewContactOpen] = useState(false);
-  const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
+  const [isDeleteContactOpen, setIsDeleteContactOpen] = useState(false);
 
   return (
     <>
@@ -35,17 +35,17 @@ const Contacts = () => {
           }
           menuBarToggle={() => setIsMenuOpen(!isMenuOpen)}
         />
-        <ContactsList setIsDeleteAlertOpen={setIsDeleteAlertOpen} />
+        <ContactsList />
         <NewContact
           isNewContactOpen={isNewContactOpen}
           setIsNewContactOpen={setIsNewContactOpen}
         />
-        {isDeleteAlertOpen && (
+        {isDeleteContactOpen && (
           <DeleteContact
-            onClose={setIsDeleteAlertOpen}
-            isOpen={isDeleteAlertOpen}
+            onClose={setIsDeleteContactOpen}
+            isOpen={isDeleteContactOpen}
             title="Delete Contact"
-            setIsOpen={setIsDeleteAlertOpen}
+            setIsOpen={setIsDeleteContactOpen}
           />
         )}
       </Container>
