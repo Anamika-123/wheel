@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import { Button, Pane, Toastr } from "@bigbinary/neetoui/v2";
-import { Input, Select } from "@bigbinary/neetoui/v2/formik";
 import { Formik, Form } from "formik";
+import { Button, Pane, Toastr } from "neetoui/v2";
+import { Input, Select } from "neetoui/v2/formik";
 
-import { FORM_VALIDATION_SCHEMA, ROLES } from "../constants";
+import { FORM_VALIDATION_SCHEMA, ROLES } from "./constants";
 
 export default function ContactForm({ onClose, initialValues }) {
   const [submitted, setSubmitted] = useState(false);

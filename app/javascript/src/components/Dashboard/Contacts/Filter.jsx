@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import { Plus, Search, Settings } from "@bigbinary/neeto-icons";
-import { Typography } from "@bigbinary/neetoui/v2";
-import { MenuBar } from "@bigbinary/neetoui/v2/layouts";
+import { Plus, Search, Settings } from "neetoIcons";
+import { Typography } from "neetoui/v2";
+import { MenuBar } from "neetoui/v2/layouts";
 
 const Filter = ({ isMenuOpen }) => {
   const [isSearchCollapsed, setIsSearchCollapsed] = useState(true);

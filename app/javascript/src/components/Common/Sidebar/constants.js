@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, UserCircle, Inbox } from "@bigbinary/neeto-icons";
+import { Text, UserCircle, Inbox } from "neetoIcons";
 
 export const APP_NAME = "Wheel";
 
